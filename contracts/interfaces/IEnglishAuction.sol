@@ -30,11 +30,11 @@ interface IEnglishAuction {
 
     fallback() external payable;
 
-    function createAuction(uint _startingPrice, string memory _item, uint _step) external;
+    function createAuction(uint _startingPrice, string memory _item, uint _step, uint _startingShare) external;
 
-    function makeBid(uint index) external payable;
+    function makeBid(uint index, uint _offer) external payable;
 
     function getPrice(uint index) external view returns (uint);
 
-    function addToQueue(uint index) external returns (bytes32);
+    function execute(uint index, uint _timestamp) external payable;
 }
