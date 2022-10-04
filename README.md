@@ -1,6 +1,8 @@
 # Implementation of Auctions on Solidity
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/donBarbos/md-share/Checks?label=build)](https://github.com/donBarbos/md-share/actions/workflows/checks.yml)
+[![Lint](https://github.com/donBarbos/deAuctions/actions/workflows/lint.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/lint.yml)
+[![Tests](https://github.com/donBarbos/deAuctions/actions/workflows/tests.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/tests.yml)
+[![Build Status](https://github.com/donBarbos/deAuctions/actions/workflows/build.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/build.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://github.com/donBarbos/deAuctions/blob/main/LICENSE)
 
 ## 🚀 Getting Started
