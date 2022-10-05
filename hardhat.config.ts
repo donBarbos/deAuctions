@@ -6,6 +6,7 @@ import { config as dotenvConfig } from "dotenv"
 import "hardhat-contract-sizer"
 import "hardhat-dependency-compiler"
 import "hardhat-gas-reporter"
+import "solidity-coverage"
 import { HardhatUserConfig } from "hardhat/config"
 import { resolve } from "path"
 
