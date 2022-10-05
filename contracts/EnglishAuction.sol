@@ -7,10 +7,10 @@ import "./interfaces/IEnglishAuction.sol";
 // @notice English auction is an open-outcry ascending dynamic auction. It proceeds as follows.
 contract EnglishAuction is IEnglishAuction {
     // @dev default share of expected price in ppm (needed to calculate the starting price)
-    uint constant STARTING_SHARE = 25000;   // =25%
+    uint internal constant INITIAL_SHARE = 25000;   // =25%
 
     // @dev default offer step in ppm
-    uint constant STEP = 1000;              // =1%
+    uint internal constant STEP = 1000;              // =1%
 
     // @dev see `./interfaces/IEnglishAuction.sol`
     Auction[] public auctions;
@@ -31,14 +31,14 @@ contract EnglishAuction is IEnglishAuction {
         uint _expectedPrice,
         string memory _item,
         uint _step,
-        uint _startingShare
+        uint _initialShare
     ) external {
         // @dev if _parameter of function is zero then use CONSTANT
-        uint startingShare = _startingShare == 0 ? STARTING_SHARE : _startingShare;
+        uint initialShare = _initialShare == 0 ? INITIAL_SHARE : _initialShare;
         uint step = _step == 0 ? STEP : _step;
 
         // @dev convert from ppm to units
-        uint startingPrice = _expectedPrice * (_startingShare / 100000);
+        uint startingPrice = _expectedPrice * (initialShare / 100000);
         step = startingPrice * (step / 100000);
 
         Auction memory newAuction = Auction({

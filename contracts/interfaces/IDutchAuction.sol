@@ -31,10 +31,14 @@ interface IDutchAuction {
 
     fallback() external payable;
 
-    function createAuction(uint _startingPrice, uint _discountRate, string memory _item, uint _duration) external;
+    function createAuction(
+        uint _startingPrice,
+        uint _discountRate,
+        string memory _item,
+        uint _duration
+    ) external;
 
     function buy(uint index) external payable;
 
-    function getPrice(uint index) external view returns(uint);
-
+    function getPrice(uint index) external view returns (uint);
 }

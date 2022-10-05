@@ -4,9 +4,10 @@ pragma solidity ^0.8.9;
 import "./interfaces/IDutchAuction.sol";
 
 // @autor donBarbos
-// @notice Dutch auction is a price discovery process in which the auctioneer starts with the highest asking price and lowers it until it reaches a price level where the bids received will cover the entire offer quantity.
+// @notice Dutch auction is a price discovery process in which the auctioneer starts with the highest asking price
+// and lowers it until it reaches a price level where the bids received will cover the entire offer quantity.
 contract DutchAuction is IDutchAuction {
-    uint constant DURATION = 2 days;
+    uint internal constant DURATION = 2 days;
     Auction[] public auctions;  // see `./interfaces/IDutchAuction.sol`
 
     receive() external payable {
