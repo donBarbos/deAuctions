@@ -20,7 +20,6 @@
     "deploy": "hardhat run scripts/deploy.ts",
     "verify": "hardhat verify",
     "typechain": "hardhat typechain",
-    // "coverage": "hardhat coverage --solcoverjs ./.solcover.js --temp artifacts --testfiles \"test/**/*.ts\" && yarn typechain",
     "test": "hardhat test",
     "lint": "yarn lint:sol && yarn lint:ts && yarn prettier:check",
     "lint:sol": "solhint --config ./.solhint.json --max-warnings 5 \"contracts/**/*.sol\"",
