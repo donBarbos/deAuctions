@@ -28,3 +28,9 @@ jobs:
       - name: Compile
         run: |
           yarn compile
+        env:
+          MAINNET_API_KEY: ${{ secrets.MAINNET_API_KEY }}
+          GOERLI_API_KEY: ${{ secrets.GOERLI_API_KEY }}
+          OPTIMISM_API_KEY: ${{ secrets.OPTIMISM_API_KEY }}
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          ARBITRUM_API_KEY: ${{ secrets.ARBITRUM_API_KEY }}
