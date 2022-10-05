@@ -8,7 +8,6 @@ import "hardhat-dependency-compiler"
 import "hardhat-gas-reporter"
 import { HardhatUserConfig } from "hardhat/config"
 import { resolve } from "path"
-import "solidity-coverage"
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
