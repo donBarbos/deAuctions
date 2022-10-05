@@ -28,6 +28,5 @@ jobs:
       - name: Run lints
         run: |
           yarn lint
-          yarn coverage
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
