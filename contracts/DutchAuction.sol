@@ -7,15 +7,15 @@ import "./interfaces/IDutchAuction.sol";
 // @notice Dutch auction is a price discovery process in which the auctioneer starts with the highest asking price
 // and lowers it until it reaches a price level where the bids received will cover the entire offer quantity.
 contract DutchAuction is IDutchAuction {
-    uint internal constant DURATION = 2 days;
+    uint private constant DURATION = 2 days;
     Auction[] public auctions;  // see `./interfaces/IDutchAuction.sol`
 
-    receive() external payable {
-        require(false, "incorrect call!");
+    receive() external payable{
+        revert("incorrect call!");
     }
 
     fallback() external payable{
-        require(false, "incorrect call!");
+        revert("incorrect call!");
     }
 
     function createAuction(
@@ -23,7 +23,7 @@ contract DutchAuction is IDutchAuction {
         uint _discountRate,
         string memory _item,
         uint _duration
-    ) external {
+    ) external returns(uint) {
         uint duration = _duration == 0 ? DURATION : _duration;
         require(_startingPrice >= _discountRate * duration, "incorrect starting price!");
 
@@ -39,6 +39,7 @@ contract DutchAuction is IDutchAuction {
         });
         auctions.push(newAuction);
         emit AuctionCreated(auctions.length - 1, _item, _startingPrice, duration);
+        return auctions.length - 1;
     }
 
     function buy(uint index) external payable {
@@ -55,6 +56,7 @@ contract DutchAuction is IDutchAuction {
         }
         cAuction.seller.transfer(cPrice);
         emit AuctionEnded(index, cPrice, msg.sender);
+        delete auctions[index];
     }
 
     function getPrice(uint index) public view returns(uint) {

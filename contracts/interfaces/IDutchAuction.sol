@@ -36,7 +36,7 @@ interface IDutchAuction {
         uint _discountRate,
         string memory _item,
         uint _duration
-    ) external;
+    ) external returns (uint);
 
     function buy(uint index) external payable;
 

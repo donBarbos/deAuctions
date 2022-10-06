@@ -7,10 +7,10 @@ import "./interfaces/IEnglishAuction.sol";
 // @notice English auction is an open-outcry ascending dynamic auction. It proceeds as follows.
 contract EnglishAuction is IEnglishAuction {
     // @dev default share of expected price in ppm (needed to calculate the starting price)
-    uint internal constant INITIAL_SHARE = 25000;   // =25%
+    uint private constant INITIAL_SHARE = 25000;   // =25%
 
     // @dev default offer step in ppm
-    uint internal constant STEP = 1000;              // =1%
+    uint private constant STEP = 1000;              // =1%
 
     // @dev see `./interfaces/IEnglishAuction.sol`
     Auction[] public auctions;
@@ -19,12 +19,12 @@ contract EnglishAuction is IEnglishAuction {
     mapping(bytes32 => bool) public queue;
 
     // @note for incorrect calls
-    receive() external payable {
-        require(false, "incorrect call!");
+    receive() external payable{
+        revert("incorrect call!");
     }
 
     fallback() external payable{
-        require(false, "incorrect call!");
+        revert("incorrect call!");
     }
 
     function createAuction(
@@ -38,8 +38,8 @@ contract EnglishAuction is IEnglishAuction {
         uint step = _step == 0 ? STEP : _step;
 
         // @dev convert from ppm to units
-        uint startingPrice = _expectedPrice * (initialShare / 100000);
-        step = startingPrice * (step / 100000);
+        uint startingPrice = _expectedPrice * initialShare / 100000;
+        step = startingPrice * step / 100000;
 
         Auction memory newAuction = Auction({
             seller: payable(msg.sender),
@@ -67,7 +67,7 @@ contract EnglishAuction is IEnglishAuction {
             payable(msg.sender).transfer(refund);
         }
         // cAuction.seller.transfer(cPrice);
-        uint _timestamp = 1 days;
+        uint _timestamp = block.timestamp + 1 days;
         addToQueue(index, _timestamp);
         emit AuctionUpdated(index, _offer, msg.sender);
     }
@@ -85,8 +85,8 @@ contract EnglishAuction is IEnglishAuction {
         require(
             // _timestamp > block.timestamp + MINIMUM_DELAY &&
             // _timestamp < block.timestamp + MAXIMUM_DELAY,
-            _timestamp > block.timestamp + 100 &&
-            _timestamp < block.timestamp + 100 days,
+            _timestamp >= block.timestamp + 1 days &&
+            _timestamp <= block.timestamp + 100 days,
             "invalid timestamp"
         );
         bytes32 txId = keccak256(abi.encode(
@@ -119,6 +119,8 @@ contract EnglishAuction is IEnglishAuction {
             cAuction.item,
             _timestamp
         ));
+
+        emit AuctionEnded(index, cAuction.currentPrice, cAuction.currentBuyer);
 
         // @dev check if there isn't such a transaction in the queue
         require(queue[txId], "not queued!");
