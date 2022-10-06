@@ -5,7 +5,9 @@ on:
     types:
       - completed
     workflows:
-      - 'Checks'
+      - 'Lint'
+      - 'Tests'
+      - 'Build'
 
 jobs:
   merge-me:
