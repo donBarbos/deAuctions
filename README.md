@@ -7,6 +7,12 @@
 
 ## 🚀 Getting Started
 
+0. Setup Husky to format code on commit
+
+   ```shell
+   yarn prepare
+   ```
+
 1. Install dependencies
 
    ```shell
