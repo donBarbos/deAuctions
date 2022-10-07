@@ -8,6 +8,7 @@ import "./interfaces/IDutchAuction.sol";
 // and lowers it until it reaches a price level where the bids received will cover the entire offer quantity.
 contract DutchAuction is IDutchAuction {
     uint private constant DURATION = 2 days;
+    uint private constant DISCOUNT_RATE = 1;
     Auction[] public auctions;  // see `./interfaces/IDutchAuction.sol`
 
     receive() external payable{
@@ -24,14 +25,15 @@ contract DutchAuction is IDutchAuction {
         string memory _item,
         uint _duration
     ) external returns(uint) {
+        uint discountRate = _discountRate == 0 ? DISCOUNT_RATE : _discountRate;
         uint duration = _duration == 0 ? DURATION : _duration;
-        require(_startingPrice >= _discountRate * duration, "incorrect starting price!");
+        require(_startingPrice >= discountRate * duration, "incorrect starting price!");
 
         Auction memory newAuction = Auction({
             seller: payable(msg.sender),
             startingPrice: _startingPrice,
             finalPrice: _startingPrice,
-            discountRate: _discountRate,
+            discountRate: discountRate,
             startAt: block.timestamp,
             endsAt: block.timestamp + duration,
             item: _item,
