@@ -3,7 +3,7 @@
 [![Lint](https://github.com/donBarbos/deAuctions/actions/workflows/lint.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/lint.yml)
 [![Tests](https://github.com/donBarbos/deAuctions/actions/workflows/tests.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/tests.yml)
 [![Build Status](https://github.com/donBarbos/deAuctions/actions/workflows/build.yml/badge.svg)](https://github.com/donBarbos/deAuctions/actions/workflows/build.yml)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://github.com/donBarbos/deAuctions/blob/master/LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://github.com/donBarbos/deAuctions/blob/main/LICENSE)
 
 ## 🚀 Getting Started
 
